@@ -1,6 +1,7 @@
 USE SAMPLEDB
 GO
 
+-- WHERE FUNCTION, ISNULL, COALESCE AND COMPARISON OPERATOR USAGE IN SQL
 -- select all columns from oes.product tables
 SELECT *
 FROM oes.products;
