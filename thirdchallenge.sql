@@ -4,6 +4,7 @@ GO
 
 SELECT * FROM hcm.employees;
 
+-- QUERRY USING ORDER BY, FILTERING BY (TOP) AND TOP WITH TIES USAGE IN SQL
 
 -- All employees ordered alphabetically by their lastname in Ascending order
 SELECT * FROM hcm.employees
