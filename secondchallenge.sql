@@ -2,6 +2,7 @@
 USE SAMPLEDB
 GO
 
+-- USING SELECT DISTINCT TO ELIMINATE DUPLICATE VALUE IN SQL 
 -- Second challenge
 SELECT *
 FROM bird.antarctic_populations;

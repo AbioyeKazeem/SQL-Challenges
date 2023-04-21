@@ -1,6 +1,7 @@
 USE SAMPLEDB
 GO
 
+-- Using SELECT METHOD TO QUERRY OUT A VALUE
 SELECT first_name, last_name
 FROM hcm.employees;
 
