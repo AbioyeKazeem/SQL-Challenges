@@ -4,6 +4,7 @@ GO
 SELECT *
 FROM hcm.employees;
 
+--------------------------------------------------------------------------------------------------------------------------
 -- Challenge1
 -- Write a query that give total number of employees in each department as given by the department_id column in the hcm.employees table
 --Hint: use the COUNT aggregate function in the SELECT clause, also use a GROUP BY clause.Note, all the challenges in this lecture require GROUP BY.
@@ -15,6 +16,14 @@ FROM hcm.employees
 GROUP BY department_id;
 
 --OR 
+
+SELECT 
+department_id,
+Count(*) AS total_employee
+FROM hcm.employees
+GROUP BY department_id;
+
+--OR
 
 SELECT 
 department_id,
@@ -32,20 +41,20 @@ GROUP BY department_id;
 SELECT 
 department_id,
 -- ROUND FUNCTION  is used 
-ROUND(AVG(salary), 0) AS average_salary
+ROUND(AVG(salary), 1) AS avg_salary
 FROM hcm.employees
 WHERE department_id IS NOT NULL 
 GROUP BY department_id
-ORDER BY department_id DESC;
+ORDER BY avg_salary DESC;
 
 -- OR
 
 SELECT
 department_id,
-AVG(salary) AS average_salary
+AVG(salary) AS avg_salary
 FROM hcm.employees
 GROUP BY department_id
-ORDER BY department_id DESC;
+ORDER BY avg_salary DESC;
 
 ------------------------------------------------------------------------------------------------------------------------------
 SELECT *
@@ -61,7 +70,7 @@ warehouse_id,
 Sum(quantity_on_hand) AS total_product_on_hand
 FROM oes.inventories
 GROUP BY warehouse_id
-HAVING SUM(	quantity_on_hand) > 5000;
+HAVING SUM (quantity_on_hand) > 5000;
 
 ---------------------------------------------------------------------------------------------------------------------------------
 SELECT *
@@ -81,9 +90,10 @@ FROM bird.antarctic_populations;
 -- Challenge5
 -- what is the date of the most recent population count for each species at each locality in the bird.antarctic_populations table?
 -- Hint: Group by more than one column.
-SELECT species_id,
+SELECT locality,
+species_id,
 MAX(date_of_count) AS Most_recent_species_date
 FROM bird.antarctic_populations
-GROUP BY species_id;
+GROUP BY locality, species_id;
 
 
