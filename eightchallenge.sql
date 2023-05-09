@@ -42,9 +42,9 @@ FROM hcm.employees;
 -- Hint: Get department name from hcm.departments table. Get all other attributes from hcm.employees table. Use Inner Join btw the two tables
 -- This is cos u are to only include employees who only belong to a department.
 SELECT
-d.department_id,d.department_name, e.employee_id, e.first_name, e.last_name, e.salary
-FROM hcm.departments d INNER JOIN hcm.employees e
-ON d.department_id = e.employee_id;
+e.employee_id, e.first_name, e.last_name, e.salary, d.department_name
+FROM hcm.employees e INNER JOIN hcm.departments d
+ON  d.department_id = e.department_id;
 
 -------------------------------------------------------------------------------------------------------------------------
 -- Challenge2
@@ -56,11 +56,18 @@ ON d.department_id = e.employee_id;
 -- department_name
 -- Hint: Get department name from hcm.departments table. Get all other attributes from hcm.employees table. Use Outer Join btw the two tables
 -- This is cos u are to only include all employees including the ones who does not belong to any department.
--- NOTE: I used FULL OUTER JOIN here cos am to returns all the required attributes of all employees with department or without department
+-- NOTE: I used LEFT OUTER JOIN OR RIGHT OUTER JOIN here cos am to returns all the required attributes of all employees with department or without department
 SELECT
-d.department_id, d.department_name, e.employee_id, e.first_name, e.last_name, e.salary
-FROM hcm.departments d FULL OUTER JOIN hcm.employees e
-ON d.department_id = e.employee_id;
+ e.employee_id, e.first_name, e.last_name, e.salary, d.department_name
+FROM hcm.employees e LEFT OUTER JOIN hcm.departments d
+ON  d.department_id = e.department_id;
+
+-- OR
+
+SELECT
+ e.employee_id, e.first_name, e.last_name, e.salary, d.department_name
+FROM hcm.departments d RIGHT OUTER JOIN hcm.employees e
+ON  d.department_id = e.department_id;
 
 --------------------------------------------------------------------------------------------------------------------------
 -- Challenge3
@@ -68,9 +75,9 @@ ON d.department_id = e.employee_id;
 -- also include employees who have not been assigned to a department.
 -- Hint: Use an outer join as well as GROUP BY clause
 SELECT 
-d.department_name,Sum(e.employee_id) AS Total_employees_in_each_dept
-FROM hcm.departments d FULL OUTER JOIN hcm.employees e
-ON d.department_id = e.employee_id
+d.department_name, Count(*) AS employee_count
+FROM hcm.employees e LEFT OUTER JOIN hcm.departments d 
+ON d.department_id = e.department_id
 GROUP BY d.department_name;
 
 ---------------------------------------------------------------------------------------------------------------------------
