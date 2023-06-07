@@ -11,13 +11,13 @@ FROM hcm.employees;
 --Hint: Use + operator or CONCAT to concatenate first and last name
 
 SELECT
-first_name,last_name,
+employee_id,first_name,last_name,
 first_name + ' ' + last_name  AS employee_name
 FROM hcm.employees;
 
 -- OR 
 
-SELECT first_name, last_name,
+SELECT employee_id,first_name, last_name,
 CONCAT(first_name, ' ', last_name) AS employee_name
 FROM hcm.employees;
 
@@ -29,14 +29,14 @@ FROM hcm.employees;
 -- employee_id, first_name, middle_name, last_name and employee_name and be mindful that the middlename allows null
 
 SELECT 
-first_name, middle_name, last_name,
+employee_id,first_name, middle_name, last_name,
 first_name + ISNULL(' ' + middle_name, ' ') + ' ' + last_name AS employee_name
 FROM hcm.employees;
 
 -- OR 
 
-SELECT first_name, middle_name, last_name,
-CONCAT(first_name,' ' + middle_name, ' ', last_name)
+SELECT employee_id, first_name, middle_name, last_name,
+CONCAT(first_name,' ' + middle_name, ' ', last_name) AS employee_name
 FROM hcm.employees;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ FROM bird.antarctic_species;
 -- Hint: use CHARINDEX function to find the position of the first space. Minus 1 of the position to get the position of the last character
 -- for the genus name. NEST this within the LEFT FUNCTION.
 SELECT 
-species_id, scientific_name, common_name,
+scientific_name,
 LEFT(scientific_name, CHARINDEX(' ', scientific_name) -1)  AS genus_name
 FROM bird.antarctic_species;
 
@@ -61,7 +61,7 @@ FROM bird.antarctic_species;
 -- Hint: use the CHARINDEX function to find the position of the single space, Add 1 to get the position of the first character of the species name
 -- Nest this as the second argument within the SUBSTRING function. Also nest the LEN function within the third argument of the same SUBSTRING Fxn.
 SELECT 
-species_id, scientific_name, common_name,
+scientific_name,
 SUBSTRING(scientific_name, CHARINDEX(' ', scientific_name) + 1, LEN(scientific_name)) AS species_name
 FROM bird.antarctic_species;
 -------------------------------------------------------------------------------------------------------------------------------------------------
