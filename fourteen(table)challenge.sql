@@ -78,8 +78,26 @@ FROM dbo.emp;
 -- dept_id: 1,1
 -- Hints: Do not specify emp_id in the insert statement due to the identity property and use 'YYYYMMDD'format
 INSERT INTO dbo.emp(first_name,last_name,hire_date,dept_id)
-       VALUES('Scot','Davis','20201211',1),
-	         ('Miriam','Yardley','20201205',1);
+       VALUES('Scot','Davis','20201211',1);
+	        -- ('Miriam','Yardley','20201205',1);
 SELECT * 
 FROM dbo.emp;
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Update Statement
+-- Update of table
+-- challenge:Change Miriam's last_name from 'Yardley' to 'Greenbank' in the dbo.emp table. identify Miriam by her emp_id number in the WHERE clause of
+-- the update statement.
+UPDATE dbo.emp
+SET first_name = 'Greenbank'
+WHERE emp_id = 2;
+
+SELECT *
+FROM
+dbo.emp;
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+--DELETE STATEMENT
+-- challenge
+-- delete employee "Scott Davis' from dbo.emp table by his emp_id
+DELETE dbo.emp
+WHERE emp_id = 1;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
